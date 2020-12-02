@@ -1,0 +1,10 @@
+POST http://localhost:5000/members
+Content-Type: application/json
+
+{
+    "name":"test name 7",
+    "age":55
+}
+
+###
+GET http://localhost:5000/members/5fc75b79f160a5698845e095
