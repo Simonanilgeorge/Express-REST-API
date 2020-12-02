@@ -15,9 +15,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            border:1px solid black;
-            padding:20px;
-            
+            /* border: 1px solid black; */
+            padding: 20px;
+
         }
 
         a {
@@ -28,46 +28,48 @@
 
         }
 
-        .display{
-            border:1px solid black;
+        .display {
+            border: 1px solid black;
             padding: 20px;
             margin: 10px;
         }
-        .link{
 
-width:fit-content;
-            transition: 0.1s ease-in-out;
-        }
+        .link {
+            /* border:1px solid black; */
 
-        .link:hover{
-        transform: scale(1.1);
-            color:grey;
 
+            width: fit-content;
+            transition: 0.5s ease-in-out;
 
         }
 
 
+        .link:hover::after {
+            content: "view more";
+            font-size: 12px;
+            color:rgb(50, 167, 206);
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>This is the members page</h1>
+        <h1>All members</h1>
         <a href="/">Go to Home page</a>
 
 
-        </div>
-        
+    </div>
 
 
 
-        <% members.forEach(member => {%>
-        <div class="display">
-            <p class="link"> <a href="members/<%= member.id %>"><%=member.name%></a> </p>
-            <p> Age: <%=member.age%></p>
-            <p>ID :<%=member.id%></p>
-        </div>
-        <%  });%>
+
+    <% members.forEach(member => {%>
+    <div class="display">
+        <p class="link"> <a href="members/<%= member.id %>"><%=member.name%></a> </p>
+        <p> Age: <%=member.age%></p>
+        <p>ID :<%=member.id%></p>
+    </div>
+    <%  });%>
 
 
     </div>

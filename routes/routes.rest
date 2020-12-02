@@ -2,8 +2,8 @@ POST http://localhost:5000/members
 Content-Type: application/json
 
 {
-    "name":"test name 7",
-    "age":55
+    "name":"Oscar 2",
+    "age":95
 }
 
 ###

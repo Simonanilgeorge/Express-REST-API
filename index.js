@@ -14,7 +14,8 @@ db.once('connected',()=>console.log(`connected`))
 
 app.set('view-engine','ejs')
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true ,useUnifiedTopology: true})
-
+//to grab values from form
+app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
 

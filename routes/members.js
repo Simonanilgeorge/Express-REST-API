@@ -19,6 +19,10 @@ router.get('/', async (req, res) => {
 
 })
 
+
+router.get('/newmember',(req,res)=>{
+    res.render('add-member.ejs')
+})
 router.post('/', async (req, res) => {
     const newMember = new Member({
         name: req.body.name,
@@ -28,7 +32,8 @@ router.post('/', async (req, res) => {
     try {
 
         const member = await newMember.save()
-        res.status(201).json({ member })
+        // res.status(201).json({ member })
+        res.status(201).redirect('/')
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
