@@ -8,10 +8,7 @@ router.get('/', async (req, res) => {
 
     try {
         const allMembers = await Member.find();
-
         console.log(allMembers);
-
-
         res.render('members.ejs', { members: allMembers })
 
     } catch (err) {
