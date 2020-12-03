@@ -4,6 +4,8 @@ const app=express()
 const members=require('./routes/members')
 const path=require('path')
 const mongoose=require('mongoose')
+const methodOverride=require('method-override')
+
 
 
 const PORT=5000
@@ -17,7 +19,7 @@ mongoose.connect(process.env.DB_URL, { useNewUrlParser: true ,useUnifiedTopology
 //to grab values from form
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
-
+app.use(methodOverride('_method'))
 
 app.use(express.static(path.join(__dirname,'public')))
 

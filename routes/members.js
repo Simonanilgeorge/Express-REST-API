@@ -8,7 +8,9 @@ router.get('/', async (req, res) => {
 
     try {
         const allMembers = await Member.find();
-    
+
+        console.log(allMembers);
+
 
         res.render('members.ejs', { members: allMembers })
 
@@ -22,7 +24,7 @@ router.get('/', async (req, res) => {
 })
 
 
-router.get('/newmember',(req,res)=>{
+router.get('/newmember', (req, res) => {
     res.render('add-member.ejs')
 })
 router.post('/', async (req, res) => {
@@ -42,39 +44,39 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.get('/:id',findSingleMember, async (req, res) => {
+router.get('/:id', findSingleMember, async (req, res) => {
 
     res.render('singlemember.ejs', { member: res.singleMember })
 
 })
 
 
-router.delete('/:id',findSingleMember,async (req,res)=>{
+router.delete('/:id', findSingleMember, async (req, res) => {
 
-    const deletedMember=await res.singleMember.remove()
-    res.status(200).json({message:deletedMember})
+    const deletedMember = await res.singleMember.remove()
+    res.redirect('/members')
     console.log(`deleted member is ${deletedMember}`);
 
 })
 
 //middleware to find a single member
-async function findSingleMember(req,res,next){
+async function findSingleMember(req, res, next) {
 
     let singleMember
-try{
-singleMember=await Member.findById(req.params.id)
-console.log(`Member is ${singleMember}`);
-if(!singleMember){
-    return res.status(404).json("member with this id does not exist")
-}
-}
-catch(err){
+    try {
+        singleMember = await Member.findById(req.params.id)
+        console.log(`Member is ${singleMember}`);
+        if (!singleMember) {
+            return res.status(404).json("member with this id does not exist")
+        }
+    }
+    catch (err) {
 
-    res.status(500).json({message:err.message})
-}
+        res.status(500).json({ message: err.message })
+    }
 
 
-res.singleMember=singleMember
-next();
+    res.singleMember = singleMember
+    next();
 }
 module.exports = router
